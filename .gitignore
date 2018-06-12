@@ -1,0 +1,10 @@
+.env
+.idea
+bin/
+include/
+lib/
+lib64
+*.sqlite3
+*pyc
+__pycache__
+pip-selfcheck.json
