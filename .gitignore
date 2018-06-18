@@ -8,3 +8,4 @@ lib64
 *pyc
 __pycache__
 pip-selfcheck.json
+staticfiles
