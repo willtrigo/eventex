@@ -1,4 +1,4 @@
 ignore-paths:
     - contrib
 python-targets:
-    - 3
+    - 2
