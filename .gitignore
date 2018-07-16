@@ -9,3 +9,6 @@ lib64
 __pycache__
 pip-selfcheck.json
 staticfiles
+.ipynb_checkpoints
+etc
+share

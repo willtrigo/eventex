@@ -19,7 +19,7 @@ git clone git@github.com:willtrigo/eventex.git wttd
 cd wttd
 python -m venv .wttd
 source .wttd/bin/activate
-pip install -r requirements.txt
+pip install -r requirements-dev.txt
 cp contrib/env-sample .env-sample
 python manage.py testes
 ```
