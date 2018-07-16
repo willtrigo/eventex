@@ -1,10 +1,10 @@
-doc-warnings: false
-test-warnings: false
 strictness: medium
-uses:
-  - django
-autodetect: true
-requirements:
-  - requirements.txt
+pylint:
+  run: false
 python-targets:
-  - 3
+   - 3
+test-warnings: no
+pep8:
+   full: true
+ignore-paths:
+   - contrib/
