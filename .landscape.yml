@@ -1,6 +1,0 @@
-strictness: high
-uses:
-  - django
-python-targets:
-  - 2
-  - 3
