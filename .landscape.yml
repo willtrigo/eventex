@@ -1,10 +1,4 @@
-strictness: medium
-pylint:
-  run: false
-python-targets:
-   - 3
-test-warnings: no
-pep8:
-   full: true
 ignore-paths:
-   - contrib/
+    - contrib
+python-targets:
+    - 3
