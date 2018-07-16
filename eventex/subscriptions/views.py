@@ -24,9 +24,14 @@ def create(request):
     if not form.is_valid():
         return render(request, 'subscriptions/subscription_form.html', {'form': form})
 
-    _send_mail('Confirmação de inscrição', settings.DEFAULT_FROM_EMAIL, form.cleaned_data['email'], 'subscriptions/subscription_email.txt', form.cleaned_data)
+    _send_mail(
+        'Confirmação de inscrição',
+        settings.DEFAULT_FROM_EMAIL,
+        form.cleaned_data['email'],
+        'subscriptions/subscription_email.txt',
+        form.cleaned_data)
     # Success feedback
-    messages.success(request, 'Inscrição realizada com sucesso!')
+    messages.success(request, 'Inscrição realizada com sucesso!'.decode().encode('utf-8'))
     return HttpResponseRedirect('/inscricao/')
 
 
