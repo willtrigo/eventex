@@ -1,7 +1,8 @@
 """Django settings for eventex project."""
 import os
+import dj_database_url
 from decouple import Csv, config
-from dj_database_url import parse as dburl
+# from dj_database_url import parse as dburl
 
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -54,9 +55,12 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'eventex.wsgi.application'
 
-default_dburl = 'sqlite:///' + os.path.join(BASE_DIR, 'db.sqlite3')
+# default_dburl = 'sqlite:///' + os.path.join(BASE_DIR, 'db.sqlite3')
+# DATABASES = {
+#     'default': config('DATABASES_URL', default=default_dburl, cast=dburl),
+# }
 DATABASES = {
-    'default': config('DATABASES_URL', default=default_dburl, cast=dburl),
+    'default': dj_database_url.config(default=config('DATABASE_URL'), conn_max_age=600)
 }
 
 AUTH_PASSWORD_VALIDATORS = [
