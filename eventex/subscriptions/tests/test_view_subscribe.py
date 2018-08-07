@@ -1,4 +1,4 @@
-"""Test App subscriptions."""
+"""Test App subscriptions viem."""
 from django.core import mail
 from django.test import TestCase
 
@@ -53,8 +53,8 @@ class SubscribePostValid(TestCase):
         self.resp = self.client.post('/inscricao/', data)
 
     def test_post(self):
-        """Valid POST should redirect to /inscricao/."""
-        self.assertEqual(302, self.resp.status_code)
+        """Valid POST should redirect to /inscricao/1/."""
+        self.assertRedirects(self.resp, '/inscricao/1/')
 
     def test_send_subcribe_email(self):
         """Valid SEND should have 1 sending."""
@@ -93,16 +93,3 @@ class SubscribePostInvalid(TestCase):
     def test_dont_save_subscription(self):
         """Don't Save subscription."""
         self.assertFalse(Subscription.objects.exists())
-
-
-class SubscribeSuccessMessage(TestCase):
-    """docstring for post of subscribe success message."""
-
-    def setUp(self):
-        """Set variables."""
-        data = dict(name='Henrique Bastos', cpf='12345678901', email='henrique@bastos.net', phone='21-99618-6180')
-        self.resp = self.client.post('/inscricao/', data, follow=True)
-
-    def test_message(self):
-        """Subscribe must have confirmation."""
-        self.assertContains(self.resp, 'Inscrição realizada com sucesso!')

@@ -29,12 +29,10 @@ class SubscribePostValid(TestCase):
 
     def test_subcription_email_body(self):
         """Valid email body, should to have 4 fields."""
-        contents = [
-                    'Henrique Bastos',
+        contents = ['Henrique Bastos',
                     '12345678901',
                     'henrique@bastos.net',
-                    '21-99618-6180',
-        ]
+                    '21-99618-6180']
         for content in contents:
             with self.subTest():
                 self.assertIn(content, self.email.body)

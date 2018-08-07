@@ -1,6 +1,8 @@
 """Test App subscriptions model."""
 from datetime import datetime
+
 from django.test import TestCase
+
 from eventex.subscriptions.models import Subscription
 
 
