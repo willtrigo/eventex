@@ -7,10 +7,10 @@ from eventex.subscriptions.models import Subscription
 class SubscriptionModelAdmin(admin.ModelAdmin):
     """Set display."""
 
-    list_display = ('name', 'email', 'phone', 'cpf', 'created_at', 'subscribed_today')
+    list_display = ('name', 'email', 'phone', 'cpf', 'created_at', 'subscribed_today', 'paid')
     date_hierarchy = 'created_at'
-    search_fields = ('name', 'email', 'phone', 'cpf', 'created_at')
-    list_filter = ('created_at',)
+    search_fields = ('name', 'email', 'phone', 'cpf', 'created_at', 'paid')
+    list_filter = ('paid', 'created_at')
 
     def subscribed_today(self, obj):
         """Return subscriptions that was created today."""
