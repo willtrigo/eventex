@@ -17,8 +17,8 @@ class SubscriptionForm(forms.Form):
 
     name = forms.CharField(label='Nome')
     cpf = forms.CharField(label='CPF', validators=[validate_cpf])
-    email = forms.EmailField(label='Email')
-    phone = forms.CharField(label='telefone')
+    email = forms.EmailField(label='Email', required=False)
+    phone = forms.CharField(label='telefone', required=False)
 
     def clean_name(self):
         """Field name should be organizade."""
@@ -32,3 +32,10 @@ class SubscriptionForm(forms.Form):
         # list comprehension
         words = [w.capitalize() for w in name.split()]
         return ' '.join(words)
+
+    def clean(self):
+        """Last validation of the form, if necessary the last validation, should be implemented."""
+        if not self.cleaned_data.get('email') and not self.cleaned_data.get('phone'):
+            raise ValidationError('Informe seu e-mail ou telefone.')
+
+        return self.cleaned_data
