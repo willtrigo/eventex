@@ -22,3 +22,18 @@ class HomeTest(TestCase):
         """Must have a hyperlink to subscribe."""
         expected = 'href="{}"'.format(r('subscriptions:new'))
         self.assertContains(self.resp, expected)
+
+    def test_speakers(self):
+        """Must show keynote speakers."""
+        contents = ['Grace Hopper',
+                    'http://hbn.link/hopper-pic',
+                    'Alan Turing',
+                    'http://hbn.link/turing-pic']
+        for expected in contents:
+            with self.subTest():
+                self.assertContains(self.resp, expected)
+
+    def test_speakers_link(self):
+        """Must have a hyperlink to speakers."""
+        expected = 'href="{}#speakers"'.format(r('home'))
+        self.assertContains(self.resp, expected)
