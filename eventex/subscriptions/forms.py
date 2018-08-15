@@ -19,3 +19,16 @@ class SubscriptionForm(forms.Form):
     cpf = forms.CharField(label='CPF', validators=[validate_cpf])
     email = forms.EmailField(label='Email')
     phone = forms.CharField(label='telefone')
+
+    def clean_name(self):
+        """Field name should be organizade."""
+        name = self.cleaned_data['name']
+
+        # simple way to capitalize the name
+        # words = []
+        # for w in name.slip():
+        #     words.append(w.capitalize())
+
+        # list comprehension
+        words = [w.capitalize() for w in name.split()]
+        return ' '.join(words)
