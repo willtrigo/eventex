@@ -6,7 +6,7 @@ from django.test import TestCase
 class HomeTest(TestCase):
     """docstring for HomeTest."""
 
-    fixtures = ['keynote.json']
+    fixtures = ['keynotes.json']
 
     def setUp(self):
         """Set variables."""
