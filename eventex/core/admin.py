@@ -1,14 +1,21 @@
 """Set admin of the core."""
 from django.contrib import admin
-from django.shortcuts import resolve_url as r
 from django.utils.html import format_html
 
-from eventex.core.models import Speaker
+from eventex.core.models import Speaker, Contact
+
+
+class ContactInline(admin.TabularInline):
+    """Set contact in line."""
+
+    model = Contact
+    extra = 1
 
 
 class SpeakerModelAdmin(admin.ModelAdmin):
     """Set model admin of the speaker."""
 
+    inlines = [ContactInline]
     prepopulated_fields = {'slug': ('name',)}
     list_display = ['name', 'photo_img', 'website_link']
 
