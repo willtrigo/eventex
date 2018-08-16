@@ -1,6 +1,7 @@
 """Test App subscriptions admin."""
 from django.test import TestCase
 from unittest.mock import Mock
+
 from eventex.subscriptions.admin import SubscriptionModelAdmin, Subscription, admin
 
 

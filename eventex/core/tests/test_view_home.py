@@ -1,10 +1,12 @@
 """Test App core."""
-from django.test import TestCase
 from django.shortcuts import resolve_url as r
+from django.test import TestCase
 
 
 class HomeTest(TestCase):
     """docstring for HomeTest."""
+
+    fixtures = ['keynote.json']
 
     def setUp(self):
         """Set variables."""
@@ -25,8 +27,10 @@ class HomeTest(TestCase):
 
     def test_speakers(self):
         """Must show keynote speakers."""
-        contents = ['Grace Hopper',
+        contents = ['href="{}"'.format(r('speaker_detail', slug='grace-hopper')),
+                    'Grace Hopper',
                     'http://hbn.link/hopper-pic',
+                    'href="{}"'.format(r('speaker_detail', slug='alan-turing')),
                     'Alan Turing',
                     'http://hbn.link/turing-pic']
         for expected in contents:

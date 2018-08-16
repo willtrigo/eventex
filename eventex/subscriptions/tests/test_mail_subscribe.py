@@ -1,8 +1,7 @@
 """Test App subscriptions send mail."""
 from django.core import mail
-from django.test import TestCase
-
 from django.shortcuts import resolve_url as r
+from django.test import TestCase
 
 
 class SubscribePostValid(TestCase):

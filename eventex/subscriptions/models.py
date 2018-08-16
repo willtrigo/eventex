@@ -1,4 +1,4 @@
-"""Subscriptions models."""
+"""Docstring for the subscription models."""
 from django.db import models
 
 from eventex.subscriptions.validators import validate_cpf
