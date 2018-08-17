@@ -48,3 +48,22 @@ class Contact(models.Model):
     def __str__(self):
         """Return value of the speaker's contact in the admin."""
         return self.value
+
+
+class Talk(models.Model):
+    """Create model talk."""
+
+    title = models.CharField('título', max_length=200)
+    start = models.TimeField('início', blank=True, null=True)
+    description = models.TextField('descrição', blank=True)
+    speakers = models.ManyToManyField('Speaker', verbose_name='palestrantes', blank=True)
+
+    class Meta:
+        """Set Meta of the talk."""
+
+        verbose_name = 'palestra'
+        verbose_name_plural = 'palestras'
+
+    def __str__(self):
+        """Return name of the talker's title in the admin."""
+        return self.title
