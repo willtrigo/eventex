@@ -67,7 +67,7 @@ class TalkListGet(TestCase):
 
     def test_context(self):
         """Talkers must be in context."""
-        variables = ['morning_talks', 'afternoon_talks', 'courses']
+        variables = ['morning_talks', 'afternoon_talks']
 
         for key in variables:
             with self.subTest():

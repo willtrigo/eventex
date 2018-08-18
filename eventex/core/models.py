@@ -63,8 +63,8 @@ class Contact(models.Model):
         return self.value
 
 
-class Activity(models.Model):
-    """Create model activity."""
+class Talk(models.Model):
+    """Create model talk."""
 
     title = models.CharField('título', max_length=200)
     start = models.TimeField('início', blank=True, null=True)
@@ -75,8 +75,8 @@ class Activity(models.Model):
 
     class Meta:
         """Set Meta of the abstract activity."""
-
-        abstract = True
+        
+        ordering = ['start']
         verbose_name = 'palestra'
         verbose_name_plural = 'palestras'
 
@@ -85,16 +85,12 @@ class Activity(models.Model):
         return self.title
 
 
-class Talk(Activity):
-    """Create model talk based in Activity model."""
-
-    pass
-
-
-class Course(Activity):
-    """Create model course based in Activity model."""
+class Course(Talk):
+    """Create model course extended from talk model."""
 
     slots = models.IntegerField()
+
+    objects = PeriodManager()
 
     class Meta:
         """Set Meta of the course."""

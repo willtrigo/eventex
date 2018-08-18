@@ -53,6 +53,10 @@ class TalkModelTest(TestCase):
         """Validate str."""
         self.assertEqual('Título da Palestra', str(self.talk))
 
+    def test_ordering(self):
+        """Validate ordering of the talks."""
+        self.assertListEqual(['start'], Talk._meta.ordering)
+
 
 class PeriodManagerTest(TestCase):
     """Test manager of the time in talks."""
@@ -111,3 +115,7 @@ class CourseModelTest(TestCase):
     def test_manager(self):
         """Validate period of the course."""
         self.assertIsInstance(Course.objects, PeriodManager)
+
+    def test_ordering(self):
+        """Validate ordering of the courses."""
+        self.assertListEqual(['start'], Course._meta.ordering)
