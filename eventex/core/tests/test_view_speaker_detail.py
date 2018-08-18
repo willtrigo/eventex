@@ -10,11 +10,13 @@ class SpeakerDetailGet(TestCase):
 
     def setUp(self):
         """Set variables."""
-        Speaker.objects.create(name='Grace Hopper',
-                               slug='grace-hopper',
-                               photo='http://hbn.link/hopper-pic',
-                               website='http://hbn.link/hopper-site',
-                               description='Programadora e almirante.')
+        Speaker.objects.create(
+            name='Grace Hopper',
+            slug='grace-hopper',
+            photo='http://hbn.link/hopper-pic',
+            website='http://hbn.link/hopper-site',
+            description='Programadora e almirante.'
+        )
         self.resp = self.client.get(r('speaker_detail', slug='grace-hopper'))
 
     def test_get(self):
@@ -27,10 +29,12 @@ class SpeakerDetailGet(TestCase):
 
     def test_html(self):
         """Html must contain information about the speaker."""
-        contents = ['Grace Hopper',
-                    'Programadora e almirante',
-                    'http://hbn.link/hopper-pic',
-                    'http://hbn.link/hopper-site']
+        contents = [
+            'Grace Hopper',
+            'Programadora e almirante',
+            'http://hbn.link/hopper-pic',
+            'http://hbn.link/hopper-site'
+        ]
 
         for expected in contents:
             with self.subTest():

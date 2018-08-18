@@ -1,29 +1,32 @@
 """Docstring models for talkers."""
-# from django.shortcuts import resolve_url as r
 from django.test import TestCase
 
-from eventex.core.models import Talk
 from eventex.core.managers import PeriodManager
+from eventex.core.models import Talk, Course
 
 
 class TalkModelTest(TestCase):
-    """Test models of the speaker."""
+    """Test models of the talks."""
 
     def setUp(self):
         """Set variables."""
-        self.talk = Talk.objects.create(title='Título da Palestra',
-                                        start='10:00',
-                                        description='Descrição da palestra.')
+        self.talk = Talk.objects.create(
+            title='Título da Palestra',
+            start='10:00',
+            description='Descrição da palestra.'
+        )
 
     def test_create(self):
-        """Test create model."""
+        """Test create model talk."""
         self.assertTrue(Talk.objects.exists())
 
     def test_has_speakers(self):
         """Talk has many Speakers and vice-versa."""
-        self.talk.speakers.create(name='Henrique Bastos',
-                                  slug='henrique-bastos',
-                                  website='http://henriquebastos.net')
+        self.talk.speakers.create(
+            name='Henrique Bastos',
+            slug='henrique-bastos',
+            website='http://henriquebastos.net'
+        )
         self.assertEqual(1, self.talk.speakers.count())
 
     def test_description_can_be_blank(self):
@@ -74,3 +77,37 @@ class PeriodManagerTest(TestCase):
         qs = Talk.objects.at_afternoon()
         expected = ['Afternoon Talk']
         self.assertQuerysetEqual(qs, expected, lambda o: o.title)
+
+
+class CourseModelTest(TestCase):
+    """Test models of the courses."""
+
+    def setUp(self):
+        """Set variables."""
+        self.course = Course.objects.create(
+            title='Título do Curso',
+            start='09:00',
+            description='Descrição do curso.',
+            slots=20
+        )
+
+    def test_create(self):
+        """Test create model course."""
+        self.assertTrue(Course.objects.exists())
+
+    def test_speakers(self):
+        """Course has many speakers and vice-versa."""
+        self.course.speakers.create(
+            name='Henrique Bastos',
+            slug='henrique-bastos',
+            website='http://henriquebastos.net'
+        )
+        self.assertEqual(1, self.course.speakers.count())
+
+    def test_str(self):
+        """Validate str."""
+        self.assertEqual('Título do Curso', str(self.course))
+
+    def test_manager(self):
+        """Validate period of the course."""
+        self.assertIsInstance(Course.objects, PeriodManager)

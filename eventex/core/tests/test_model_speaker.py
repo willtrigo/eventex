@@ -10,11 +10,13 @@ class SpeakerModelTest(TestCase):
 
     def setUp(self):
         """Set variables."""
-        self.speaker = Speaker.objects.create(name='Grace Hopper',
-                                              slug='grace-hopper',
-                                              photo='http://hbn.link/hopper-pic',
-                                              website='http://hbn.link/hopper-site',
-                                              description='Programadora e almirante.')
+        self.speaker = Speaker.objects.create(
+            name='Grace Hopper',
+            slug='grace-hopper',
+            photo='http://hbn.link/hopper-pic',
+            website='http://hbn.link/hopper-site',
+            description='Programadora e almirante.'
+        )
 
     def test_create(self):
         """Test create model."""

@@ -63,8 +63,8 @@ class Contact(models.Model):
         return self.value
 
 
-class Talk(models.Model):
-    """Create model talk."""
+class Activity(models.Model):
+    """Create model activity."""
 
     title = models.CharField('título', max_length=200)
     start = models.TimeField('início', blank=True, null=True)
@@ -74,11 +74,30 @@ class Talk(models.Model):
     objects = PeriodManager()
 
     class Meta:
-        """Set Meta of the talk."""
+        """Set Meta of the abstract activity."""
 
+        abstract = True
         verbose_name = 'palestra'
         verbose_name_plural = 'palestras'
 
     def __str__(self):
-        """Return name of the talker's title in the admin."""
+        """Return name of the title in the admin."""
         return self.title
+
+
+class Talk(Activity):
+    """Create model talk based in Activity model."""
+
+    pass
+
+
+class Course(Activity):
+    """Create model course based in Activity model."""
+
+    slots = models.IntegerField()
+
+    class Meta:
+        """Set Meta of the course."""
+
+        verbose_name = 'curso'
+        verbose_name_plural = 'cursos'
