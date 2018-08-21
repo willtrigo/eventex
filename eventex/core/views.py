@@ -1,25 +1,16 @@
 """Docstring core views."""
-from django.shortcuts import render, get_object_or_404
+from django.views.generic import ListView, DetailView
 
-from eventex.core.models import Speaker, Talk, Course
-
-
-def home(request):
-    """Render home."""
-    speakers = Speaker.objects.all()
-    return render(request, 'index.html', {'speakers': speakers})
+from eventex.core.models import Speaker, Talk
 
 
-def speaker_detail(request, slug):
-    """Render speaker."""
-    speaker = get_object_or_404(Speaker, slug=slug)
-    return render(request, 'core/speaker_detail.html', {'speaker': speaker})
+# Render home.
+home = ListView.as_view(template_name='index.html', model=Speaker)
 
 
-def talk_list(request):
-    """Render talk list."""
-    context = {
-        'morning_talks': Talk.objects.at_morning(),
-        'afternoon_talks': Talk.objects.at_afternoon(),
-    }
-    return render(request, 'core/talk_list.html', context)
+# Render speaker detail.
+speaker_detail = DetailView.as_view(model=Speaker)
+
+
+# Render talk list.
+talk_list = ListView.as_view(model=Talk)
